@@ -2,7 +2,11 @@ import { Request, Response } from "express";
 import Employee from "../../../models/employeeModels/employeeUsers";
 import { PasswordHarsher, GenerateOTP } from "../../../utils/helpers";
 import { v4 as uuidV4 } from "uuid";
-import { HTTP_STATUS_CODE } from "../../../constants/httpStatusCode";
+import { Jwt } from "../../../utils/helpers";
+import {
+  HTTP_STATUS_CODE,
+  JWT_ACCESS_TOKEN_EXPIRATION_TIME,
+} from "../../../constants";
 
 export const registerEmployee = async (req: Request, res: Response) => {
   try {
@@ -50,6 +54,40 @@ export const registerEmployee = async (req: Request, res: Response) => {
         message: `User already exists`,
       });
     }
+  } catch (error) {
+    console.log(error);
+    return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER).send({
+      message: `There is a problem`,
+    });
+  }
+};
+
+export const loginEmployee = async (req: Request, res: Response) => {
+  try {
+    const { password, email } = req.body;
+    const confirmEmployee = await Employee.findOne({
+      where: { email: email },
+    });
+    if (confirmEmployee) {
+      await PasswordHarsher.compare(password, confirmEmployee.password);
+    }
+    if (confirmEmployee) {
+      const payload = {
+        id: confirmEmployee.id,
+      };
+      const accessToken = await Jwt.sign(payload, {
+        expiresIn: JWT_ACCESS_TOKEN_EXPIRATION_TIME,
+      });
+
+      return res.status(HTTP_STATUS_CODE.SUCCESS).send({
+        message: `Login Successful`,
+        token: accessToken
+      });
+    }
+    // else{
+    return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).send({
+      message: `Invalid Credentials`,
+    });
   } catch (error) {
     console.log(error);
     return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER).send({

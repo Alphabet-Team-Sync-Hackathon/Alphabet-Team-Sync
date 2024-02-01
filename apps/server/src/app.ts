@@ -8,13 +8,13 @@ import apiV1Routes from './routes/v1'
 dotenv.config();
 sequelize
   .sync({
-    //force:true
-  }) 
+    // force:true
+  })
   .then(() => {
     console.log("Database connected Successfully");
   })
   .catch((error) => {
-    console.error('Database sync error:', error);
+    console.error("Database sync error:", error);
   });
 
 const app = express();
@@ -34,9 +34,3 @@ const port = process.env.PORT || 3000;
 app.listen(port ,() => {
   console.log(`Server is running on port ${port}`);
 });
-
-
-
-
-
-
