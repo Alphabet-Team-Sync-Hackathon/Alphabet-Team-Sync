@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { registerEmployee } from '../controllers/userControllers/Auth/employee'
+import { loginEmployee, registerEmployee } from '../controllers/userControllers/Auth/employee'
 
 
 const router=Router()
@@ -7,5 +7,6 @@ const router=Router()
 
 
 router.post("/signUpEmployee",registerEmployee)
+router.post("/signInEmployee",loginEmployee)
 
 export default router
