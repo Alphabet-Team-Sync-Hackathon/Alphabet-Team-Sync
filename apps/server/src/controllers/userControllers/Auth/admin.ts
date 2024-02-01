@@ -7,8 +7,9 @@ import {
   GenerateOTP,
   PasswordHarsher,
   passwordUtils,
+  Jwt
 } from '../../../utils/helpers'
-import { HTTP_STATUS_CODE} from '../../../constants'
+import { HTTP_STATUS_CODE, JWT_ACCESS_TOKEN_EXPIRATION_TIME} from '../../../constants'
 
 
 export const registerAdmin = async (req:Request, res:Response) => {
@@ -85,3 +86,42 @@ try {
     }) 
 }
 }
+
+export const loginAdmin = async (req:Request, res:Response) => {
+    try {
+        const { password, email } = req.body;
+        const admin = await Admin.findOne({
+          where: { email: email },
+        });
+        if (admin) {                                                                                                                                                                                                                                  
+          await PasswordHarsher.compare(password, admin.password);
+        }
+        if (admin) {
+          const payload = {
+            id: admin.id,
+            role: admin.role
+          };
+          const accessToken = await Jwt.sign(payload, {
+            expiresIn: JWT_ACCESS_TOKEN_EXPIRATION_TIME,
+          });
+    
+          return res.status(HTTP_STATUS_CODE.SUCCESS).send({
+            message: `Login Successful`,
+            token: accessToken
+          });
+        }
+        // else{
+        return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).send({
+          message: `Invalid Credentials`,
+        });
+        
+    } catch (error) {
+        console.log(error);
+        return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER).send({
+          message: `There is a problem`,
+        });
+    }
+}
+
+
+
