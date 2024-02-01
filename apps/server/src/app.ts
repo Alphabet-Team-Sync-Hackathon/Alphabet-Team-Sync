@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from "express";
 import sequelize from './config/dbconfig';
+import employeeRouter from "./routes/employeeRoutes"
 
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
@@ -15,14 +16,19 @@ app.use(express.json())
 
 app.use(cookieParser())
 const port = process.env.PORT || 3000;
+app.use("/employee",employeeRouter);
+
+
+
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, Express with TypeScript!');
 });
 
-// Drop the table
 sequelize
-  .sync({}) // Set force: true to drop the table
+  .sync({
+    //force:true
+  }) 
   .then(() => {
     console.log("Database connected Successfully");
   })

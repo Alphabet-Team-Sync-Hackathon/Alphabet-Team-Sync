@@ -6,7 +6,15 @@ import { DataTypes,
      Model } from 'sequelize';
 
 import db from '../../config/dbconfig';
+
 const TABLE_NAME='Employee'
+
+enum UserRole {
+    Employee = "employee",
+    // Add other roles as needed
+  }
+
+
 
 class Employee extends Model<
 InferAttributes <Employee>,
@@ -36,10 +44,10 @@ declare endDate: Date;
 Employee.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
+        type: DataTypes.UUID,
+        primaryKey: true,
+        allowNull: false,
+      },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
