@@ -10,6 +10,7 @@ import db from "../../config/dbconfig";
 
 const TABLE_NAME = 'Admin'
 
+const defaultRole = 'admin'
 
 class Admin extends Model<
 InferAttributes<Admin>,
@@ -19,6 +20,8 @@ InferCreationAttributes<Admin>
   declare firstName: string
   declare lastName: string
   declare email: string;
+  declare phone: string;
+  declare role: string;
   declare otp: CreationOptional<string>
   declare otp_expiry: CreationOptional<Date>
   declare resetToken: CreationOptional<string>
@@ -31,14 +34,15 @@ InferCreationAttributes<Admin>
   declare permissions: string; 
   declare taskPreferences: string;
   declare performanceMetricsConfig: string;
+  declare isVerified: boolean;
 }
 
 Admin.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
       primaryKey: true,
+      allowNull: false,
     },
     firstName: {
       type: DataTypes.STRING,
@@ -53,9 +57,18 @@ Admin.init(
       allowNull: false,
       unique: true,
     },
+    phone:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    role:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: defaultRole
     },
     otp: {
         type: DataTypes.STRING,
@@ -98,6 +111,10 @@ Admin.init(
       allowNull: true,
     },
     performanceMetricsConfig: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    isVerified: {
       type: DataTypes.STRING,
       allowNull: true,
     },

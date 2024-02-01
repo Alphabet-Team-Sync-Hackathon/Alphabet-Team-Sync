@@ -1,9 +1,14 @@
+import { ENV } from '../config'
 import bcrypt from 'bcrypt'
 
 
+export const passwordUtils = {
+    length: 5,
+    regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?.&])[A-Za-z\d@$!%*?.&]{5,}$/,
+    error:`Password: Min 5 characters, with an uppercase, a lowercase, a number, and a special character.`
+  }
 
-
-export class PasswordHarsher {
+  export class PasswordHarsher {
     static async compare(password: string, hash: string) {
       return await bcrypt.compare(password, hash)
     }
@@ -14,7 +19,6 @@ export class PasswordHarsher {
     }
   }
 
-
   export const GenerateOTP = (options?: { expires: number }) => {
     const otp = Math.floor(100000 + Math.random() * 900000)
     const expiry = new Date()
@@ -23,3 +27,5 @@ export class PasswordHarsher {
     )
     return { otp, expiry }
   }
+
+ 
