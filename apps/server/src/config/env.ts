@@ -36,11 +36,11 @@ const ENV = {
   OAUTH_CLIENT_ID,
   OAUTH_CLIENT_SECRET,
   REDIS,
-  // IS_PROD: isProduction,
   FE_BASE_URL,
   CLOUDINARY_NAME,
   API_KEY_4_CLOUDINARY,
   API_SECRET_4_CLOUDINARY,
 }
+
 
 export default ENV

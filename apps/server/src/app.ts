@@ -1,29 +1,14 @@
 import express, { Request, Response, NextFunction } from "express";
-import sequelize from "./config/dbconfig";
-import employeeRouter from "./routes/employeeRoutes";
-
+import sequelize from './config/dbconfig';
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import logger from "morgan";
+import apiV1Routes from './routes/v1'
 
 dotenv.config();
-const app = express();
-app.use(express.urlencoded({ extended: false }));
-
-app.use(logger("dev"));
-app.use(express.json());
-
-app.use(cookieParser());
-const port = process.env.PORT || 3000;
-app.use("/employee", employeeRouter);
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, Express with TypeScript!");
-});
-
 sequelize
   .sync({
-    //force:true
+    // force:true
   })
   .then(() => {
     console.log("Database connected Successfully");
@@ -32,6 +17,20 @@ sequelize
     console.error("Database sync error:", error);
   });
 
-app.listen(port, () => {
+const app = express();
+app.use(express.urlencoded({ extended: false }))
+app.use(logger('dev'))
+app.use(express.json())
+app.use(cookieParser())
+app.use('/api/v1', apiV1Routes)
+
+
+const port = process.env.PORT || 3000;
+
+
+
+
+
+app.listen(port ,() => {
   console.log(`Server is running on port ${port}`);
 });

@@ -29,7 +29,7 @@ declare otp_expiry: CreationOptional<Date>
 declare resetToken: CreationOptional<string>
 declare resetTokenExpires: CreationOptional<Date>
 declare password: string; 
-declare role: 'employee'; 
+declare role: string; 
 declare company: string;
 declare jobTitle: string;
 declare department: string;

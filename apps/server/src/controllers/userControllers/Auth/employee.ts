@@ -81,6 +81,7 @@ export const loginEmployee = async (req: Request, res: Response) => {
 
       return res.status(HTTP_STATUS_CODE.SUCCESS).send({
         message: `Login Successful`,
+        token: accessToken
       });
     }
     // else{
