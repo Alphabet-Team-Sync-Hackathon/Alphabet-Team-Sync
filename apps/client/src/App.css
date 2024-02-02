@@ -487,8 +487,26 @@ table td
 .s2-top
 {
   font-family: "Poppins", sans-serif;
+  background: #101014;
+  height: 45vh;
 }
 .s2-top h1
 {
   font-weight: 400;
+}
+.s2-top-infill .card
+{
+  width: 200px;
+  background: #F7F7F7;
+  height: 220px;
+  border-radius: 20px;
+}
+.s2-top-infill .card>h1
+{
+ font-size: 130px;
+ margin-top: 13px;
+}
+.s2-top-infill .top-flex
+{
+  display: none;
 }
