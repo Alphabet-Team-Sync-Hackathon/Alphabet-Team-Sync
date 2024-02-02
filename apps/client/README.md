@@ -1,8 +1,12 @@
-# React + Vite
+Start the app by running "yarn"  on your local machine.
+Then run "yarn dev"
+That will install all used dependencies and start the app.
+However,if there is any dependency that was not installed,install it manually
+by running "yarn add < name of dependency >".
+Most likely "react-router-dom" & "jquery" may not be installed automatically,
+so just manually install them by running "yarn add jquery" & "yarn add react-router-dom"
+Afterwards run "yarn dev" to start the frontend.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
