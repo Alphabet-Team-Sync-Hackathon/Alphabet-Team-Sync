@@ -194,7 +194,22 @@ h1,h2,h3,h4,h5,h6
   width: 94%;
   background-color: #f1f1f1;
 }
-
+.side-3 h1
+{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400; 
+}
+.side-3 .header-one
+{
+  margin: 1em;
+}
+.side-3 h2
+{
+  color: #101014;
+  font-family: "Bebas Neue", sans-serif;
+  text-align: center;
+  font-size: 80px;
+}
 
 /* secttiion  */
 .section-2

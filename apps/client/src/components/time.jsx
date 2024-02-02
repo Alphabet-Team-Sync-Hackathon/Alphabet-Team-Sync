@@ -21,8 +21,8 @@ const CurrentTime = () => {
   };
 
   return (
-    <div>
-      <p>Current Time: {formatTime(currentTime)}</p>
+    <div className='time'>
+      <h2>{formatTime(currentTime)}</h2>
     </div>
   );
 };

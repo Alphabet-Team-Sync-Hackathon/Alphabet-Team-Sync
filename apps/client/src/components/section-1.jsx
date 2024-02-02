@@ -3,6 +3,7 @@ import Sidenav from "./sidenav";
 import Header from "./headeing";
 import Card from "./card";
 import employees from "./emplyeedata";
+import CurrentTime from "./time";
 const Section1=()=>
 {
     return(
@@ -64,7 +65,8 @@ const Section1=()=>
         </div>
         <div className='side-3'>
           <div className='side-3-container'>
-            
+          <Header title="Activity Log" fontSize="30px" textColor="#1B1B1C" />
+            <CurrentTime />
           </div>
         </div>
       </section>
