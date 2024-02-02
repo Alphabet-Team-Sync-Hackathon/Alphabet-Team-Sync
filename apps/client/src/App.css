@@ -467,3 +467,28 @@ table td
   border: #101014 1px solid;
   text-align: center;
 }
+/* section 3 */
+.sect-3
+{
+  background: #101014;
+  display: flex;
+}
+.s1
+{
+  width: 20%;
+  background: #f1f1f1;
+}
+.s2
+{
+  width: 100%;
+  height: 100vh;
+  background: #41418d;
+}
+.s2-top
+{
+  font-family: "Poppins", sans-serif;
+}
+.s2-top h1
+{
+  font-weight: 400;
+}
