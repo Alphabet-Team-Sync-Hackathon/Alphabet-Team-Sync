@@ -14,7 +14,6 @@ function App() {
       <Route path="/invitee-sign-up" element={<Inviteesignup /> }></Route>
       <Route path="/overview" element={<Section1 /> }></Route>
       <Route path="/tasks-page" element={<Section2 /> }></Route>
-      {/* <Route path="/employees-page" element={<Section3 /> }></Route> */}
     </Routes>
   );
 }
